@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        DIRECTORY_PATH = "/path/to/code/directory"
+        DIRECTORY_PATH = "C:\\Users\\hp\\Desktop\\753\\Task 6\\SIT753-CI-CD-Pipeline"
         TESTING_ENVIRONMENT = "Testing Environment"
-        PRODUCTION_ENVIRONMENT = "Your Name"
-        EMAIL_RECIPIENT = "your-email@example.com"
+        PRODUCTION_ENVIRONMENT = "Gnei Azmah"
+        EMAIL_RECIPIENT = "96az.ma@gmail.com"
     }
 
     stages {
@@ -14,20 +14,20 @@ pipeline {
                 echo "Building the code using Maven"
             }
         }
-
+        
         stage('Unit and Integration Tests') {
             steps {
                 echo "Running unit tests with JUnit"
                 echo "Running integration tests with JUnit"
             }
         }
-
+        
         stage('Code Analysis') {
             steps {
                 echo "Analyzing code with SonarQube"
             }
         }
-
+        
         stage('Security Scan') {
             steps {
                 echo "Performing security scan with OWASP Dependency Check"
@@ -45,22 +45,22 @@ pipeline {
                 }
             }
         }
-
+        
         stage('Deploy to Staging') {
             steps {
-                echo "Deploying to staging environment"
+                echo "Deploying to ${env.TESTING_ENVIRONMENT}"
             }
         }
-
+        
         stage('Integration Tests on Staging') {
             steps {
-                echo "Running integration tests on staging"
+                echo "Running integration tests on ${env.TESTING_ENVIRONMENT}"
             }
         }
-
+        
         stage('Deploy to Production') {
             steps {
-                echo "Deploying to production environment"
+                echo "Deploying the code to the production environment ${env.PRODUCTION_ENVIRONMENT}"
             }
         }
     }
@@ -88,4 +88,3 @@ pipeline {
         }
     }
 }
- 
